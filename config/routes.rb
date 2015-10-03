@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :organizations, only: [:index, :show]
+  resources :organizations
   resources :animals
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

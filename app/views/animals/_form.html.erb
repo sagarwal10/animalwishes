@@ -1,4 +1,4 @@
-<%= form_for(@animal) do |f| %>
+<%= form_for @animal, html: { multipart: true}  do |f| %>
   <% if @animal.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@animal.errors.count, "error") %> prohibited this animal from being saved:</h2>
@@ -27,6 +27,8 @@
     <%= f.label :fullDescription %><br>
     <%= f.text_area :fullDescription %>
   </div>
+  Organization:
+  <%= collection_select(:animal, :organization_id, Organization.all, :id, :organizationName, prompt: true) %>
   <div class="field">
     <%= f.label :amount %><br>
     <%= f.text_field :amount %>
@@ -35,6 +37,8 @@
     <%= f.label :amountRaised %><br>
     <%= f.text_field :amountRaised %>
   </div>
+Upload Picture
+ <%= f.file_field :picture %>
   <div class="actions">
     <%= f.submit %>
   </div>

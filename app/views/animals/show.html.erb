@@ -16,6 +16,15 @@
 </p>
 
 <p>
+ <strong>Organization:</strong>
+ <% if @animal.organization_id != nil %>
+ <%= link_to "#{Organization.find(@animal.organization_id).organizationName}", organization_path(@animal.organization_id) %>
+ <% else %>
+ None
+ <% end %>
+</p>
+<p>
+<p>
   <strong>Fulldescription:</strong>
   <%= @animal.fullDescription %>
 </p>
@@ -30,5 +39,9 @@
   <%= @animal.amountRaised %>
 </p>
 
+<p>
+  <strong>Picture:</strong>
+<%= image_tag @animal.picture.url(:small) %>
+</p>
 <%= link_to 'Edit', edit_animal_path(@animal) %> |
 <%= link_to 'Back', animals_path %>

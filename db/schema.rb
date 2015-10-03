@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151002112552) do
+ActiveRecord::Schema.define(version: 20151003113027) do
 
   create_table "animals", force: :cascade do |t|
     t.string   "name"
@@ -20,8 +20,27 @@ ActiveRecord::Schema.define(version: 20151002112552) do
     t.text     "fullDescription"
     t.decimal  "amount"
     t.decimal  "amountRaised"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+    t.string   "picture_file_name"
+    t.string   "picture_content_type"
+    t.integer  "picture_file_size"
+    t.datetime "picture_updated_at"
+    t.integer  "organization_id"
+  end
+
+  add_index "animals", ["organization_id"], name: "index_animals_on_organization_id"
+
+  create_table "organizations", force: :cascade do |t|
+    t.string   "name"
+    t.text     "about"
+    t.string   "url"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.string   "logo_file_name"
+    t.string   "logo_content_type"
+    t.integer  "logo_file_size"
+    t.datetime "logo_updated_at"
   end
 
 end
