@@ -1,33 +1,18 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Organizations</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>About</th>
-      <th>Url</th>
-      <th>Logo</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
+<div class="jumbotron">
+<h3>Organizations</h3>
+</div>
+<div class="container row">
     <% @organizations.each do |organization| %>
-      <tr>
-        <td><%= organization.name %></td>
-        <td><%= organization.about %></td>
-        <td><%= organization.url %></td>
-        <td><%= image_tag organization.logo.url(:thumb) %></td>
-        <td><%= link_to 'Show', organization %></td>
-        <td><%= link_to 'Edit', edit_organization_path(organization) %></td>
-        <td><%= link_to 'Destroy', organization, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+    <div class="col-md-3 col-xs-12 thumbnail">
+        <%= organization.name %>
+        <%= organization.about %>
+        <%= organization.url %>
+        <%= image_tag organization.logo.url(:thumb) %>
+    </div>
     <% end %>
-  </tbody>
-</table>
-
+</div>
 <br>
 
 <%= link_to 'New Organization', new_organization_path %>

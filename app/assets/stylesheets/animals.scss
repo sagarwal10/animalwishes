@@ -1,3 +1,52 @@
 // Place all the styles related to the Animals controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+h1 {
+   text-align:center;
+   color:white;
+}
+
+#animalpage {
+  margin:auto;
+} 
+
+#animalindex {
+  padding:0.3em;
+  margin:0.2em;
+  border-radius:20px;
+  background-color: #0174df;
+  color:yellow;
+  text-align:center;
+  img {
+   width:60%;
+  }
+
+  a {
+   margin-left:auto;
+   margin-right:auto;
+   color: yellow;
+   font-size:0.8em;
+   text-align:center;
+  }
+
+ 
+}
+
+#animalcaption {
+  color:white;
+}
+
+#animalname {
+  text-align:center;  
+  color:black;
+  font-size:1.5em;
+}
+#animalneed {
+  text-align:center;  
+  font-size:1.2em;
+}
+
+#animalamount {
+  text-align:right;
+}
