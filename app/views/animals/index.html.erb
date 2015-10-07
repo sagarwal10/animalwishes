@@ -2,11 +2,11 @@
 
 <h1>The Animals</h1>
 </div>
- <div id="animalpage" class="container-fluid row">
+ <div id="animalpage" class="container-fluid row ">
     <% @animals.each do |animal| %>
-    <div class="col-lg-2 col-md-3 col-xs-6  ">
-    <div id="animalindex" >
-        <%= image_tag animal.picture.url(:small) %>
+    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+    <div id="animalindex" class="glassy-bg radius-box m1 ell">
+       <%= image_tag animal.picture.url(:small), class:"radius-box mtm" %>
        <div id="animalcaption" class="caption">
         <div id="animalname"><strong><%= animal.name %></strong></div>
         <div id="animalorg"><% if animal.organization_id != nil %>
@@ -15,11 +15,10 @@
             None
             <% end %>
         </div>
-        <div id="animalneed"><i><%= animal.summary %></i></div>
-        <br>
-        <div><%= truncate(animal.fullDescription, length:80) %></div>
-        <div id="animalamount"><%= animal.amountRaised %>/<%= animal.amount %></div>
-        </div>
+        <div id="animalneed" class="pr1 pl1"><i><%= animal.summary %></i></div>
+        <div id="animaldescription" class="pr1 pl1"><%= truncate(animal.fullDescription, length:80) %></div>
+        <div id="animalamount" class="pb2 pr2" ><%= animal.amountRaised %>/<%= animal.amount %></div>
+    </div>
      </div>
      </div>
     <% end %>
