@@ -68,6 +68,8 @@ $base-space-unit: 1.5em;
 .mr2           { margin-right: $base-space-unit*2 }
 .ml2           { margin-left: $base-space-unit*2 }
 
+.ml50p         { margin-left: 50% }
+
 // Padding helpers
 .p0            { padding: 0 }
 .pt0           { padding-top: 0 }

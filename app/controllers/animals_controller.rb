@@ -4,7 +4,13 @@ class AnimalsController < ApplicationController
   # GET /animals
   # GET /animals.json
   def index
-    @animals = Animal.all
+    @filter_param = params[:species];
+    if (params[:species] == nil) 
+        @animals = Animal.all
+    else
+        @animals = Animal.where("species = ?", params[:species]) 
+    end
+    @species = Animal.select("species").distinct
   end
 
   # GET /animals/1

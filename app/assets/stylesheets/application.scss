@@ -10,3 +10,25 @@
 body {
 // background-color: #0a122a;
 }
+
+#pageheader {
+   text-align:center;
+} 
+
+#categoryselect {
+   padding-top: 2em;
+   height:4em;
+   text-color: black;
+}
+
+#dropdownMenu1 {
+   float:right;
+}
+#dropdownMenu2 {
+   float:right;
+}
+
+.dropdown-menu li .selected {
+   font-size:1em;
+   font-weight:bold;
+}

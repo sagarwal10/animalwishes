@@ -1,4 +1,28 @@
-<h1>The Animals</h1>
+  <div class="container row">
+  <div class="col-lg-9 col-md-8 col-sm-6 col-xs-12">
+  <div id="pageheader"><h2>Animals in Need</h2></div>
+  </div>
+
+ <div id="categoryselect" class="dropdown col-lg-3 col-md-4 col-sm-6 col-xs-12 ">
+  <button class="btn btn-default dropdown-toggle ml50p" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    Filter Animals
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu pull-right "  aria-labelledby="dropdownMenu1"> 
+    <li>
+    <% @class_for_link = (@filter_param == nil) ? "selected" : "" %>
+    <%= link_to "All", animals_path, class:"#{@class_for_link}" %>
+    </li>
+    <% @species.each do |s| %>
+    <li>
+    <% @class_for_link = (@filter_param == s.species) ? "selected" : "" %>
+    <%= link_to "#{s.species}", species_show_path("#{s.species}"), class:"#{@class_for_link}" %>
+    </li>
+    <% end %>
+  </ul>
+</div>
+</div>
+
  <div id="animalpage" class="container row ">
     <% @animals.each do |animal| %>
     <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
