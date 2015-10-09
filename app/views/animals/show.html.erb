@@ -1,47 +1,26 @@
-<p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @animal.name %>
-</p>
+ <div class="container row">
+ <div class="col-sm-offset-4 col-sm-6 ">
+<div id="animalname"><h1><%= @animal.name %></h1></div>
+<div id="animalorg"><% if @animal.organization_id != nil %>
+  <%= link_to "#{Organization.find(@animal.organization_id).organizationName}", organization_path(@animal.organization_id), class:"animalorg" %>
+  <% else %>
+     None
+  <% end %>
+</div>
+</div>
+</div>
+ 
+<div class="container row">
+ <div class="col-sm-offset-4 col-sm-6 ">
+ <%= image_tag @animal.picture.url, class: "radius-box mtm fit" %>
+</div>
+</div>
 
-<p>
-  <strong>Species:</strong>
-  <%= @animal.species %>
-</p>
-
-<p>
-  <strong>Summary:</strong>
-  <%= @animal.summary %>
-</p>
-
-<p>
- <strong>Organization:</strong>
- <% if @animal.organization_id != nil %>
- <%= link_to "#{Organization.find(@animal.organization_id).organizationName}", organization_path(@animal.organization_id) %>
- <% else %>
- None
- <% end %>
-</p>
-<p>
-<p>
-  <strong>Fulldescription:</strong>
-  <%= @animal.fullDescription %>
-</p>
-
-<p>
-  <strong>Amount:</strong>
-  <%= @animal.amount %>
-</p>
-
-<p>
-  <strong>Amountraised:</strong>
-  <%= @animal.amountRaised %>
-</p>
-
-<p>
-  <strong>Picture:</strong>
-<%= image_tag @animal.picture.url(:small) %>
-</p>
-<%= link_to 'Edit', edit_animal_path(@animal) %> |
-<%= link_to 'Back', animals_path %>
+ <div class="container row">
+ <div class="col-sm-offset-4 col-sm-6 ">
+        <div id="animalneed" class="pr1 pl1"><i><%= @animal.summary %></i></div>
+        <div id="animaldescription" class="pr1 pl1"><%= @animal.fullDescription %></div>
+        <div id="animalamountshowpage" class="pb2 pr2" ><%= @animal.amountRaised %>/<%= @animal.amount %></div>
+</div>
+</div>

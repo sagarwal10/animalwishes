@@ -9,6 +9,10 @@ $base-space-unit: 1.5em;
 .glassy-bg { background-color: rgba(0, 0, 0, 0.2) }
 .primary-bg { background-color: #B18806}
 
+.fit { 
+    height:100%;
+    width:100%;
+}
 
 // Displays
 .block { display: block }
@@ -38,6 +42,7 @@ $base-space-unit: 1.5em;
 }
 
 // Margin helpers
+.mauto	       { margin:auto }
 .m0            { margin: 0 }
 .mt0           { margin-top: 0 }
 .mr0           { margin-right: 0 }
