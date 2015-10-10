@@ -1,0 +1,10 @@
+<div class="center-block"><%= image_tag @organization.logo.url, class:"center-block" %></div>
+
+<div id="animalorg" class="pb1">
+<%= link_to "#{@organization.name}", @organization.url, class:"animalorg" %> 
+</div>
+
+<br>
+<p class="center-block">
+  <%= @organization.about %>
+</p>

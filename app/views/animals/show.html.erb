@@ -1,26 +1,36 @@
 
- <div class="container row">
- <div class="col-sm-offset-4 col-sm-6 ">
-<div id="animalname"><h1><%= @animal.name %></h1></div>
-<div id="animalorg" class="pb1"><% if @animal.organization_id != nil %>
-  <%= link_to "#{Organization.find(@animal.organization_id).organizationName}", organization_path(@animal.organization_id), class:"animalorg" %>
-  <% else %>
-     None
-  <% end %>
-</div>
-</div>
-</div>
- 
-<div class="container row">
- <div class="col-sm-offset-4 col-sm-6 ">
- <%= image_tag @animal.picture.url, class: "radius-box mtm fit" %>
-</div>
+   <div id="wrapper">
+
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav" role="tablist">
+    <li role="presentation" class="sidebar-brand"><a href="#profile" aria-controls="profile" role="tab" data-toggle="profile"><%= "About #{@animal.name}" %></a></li>
+    <li role="presentation" class="sidebar-brand"><a href="#donate" aria-controls="messages" role="tab" data-toggle="donate">Donate</a></li>
+    <li role="presentation" class="sidebar-brand"><a href="#organization" aria-controls="settings" role="tab" data-toggle="organization"><%= "#{@animal.name}'s Home" %></a></li>
+  </ul>
 </div>
 
- <div class="container row">
- <div class="col-sm-offset-4 col-sm-6 ">
-        <div id="animalneed" class="p1"><h3><i><%= @animal.summary %></i><h3></div>
+      <div id="page-content-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-sm-offset-1 col-sm-9">
+<div id="animalname"><h1><%= @animal.name %></h1></div>
+ <%= image_tag @animal.picture.url, class: "radius-box mtm fit" %>
+
+<a name="profile"></a>  
         <div id="animaldescription" class=""><%= @animal.fullDescription %></div>
-        <div id="animalamountshowpage" class="pb2 pr2" ><%= @animal.amountRaised %>/<%= @animal.amount %></div>
+<a name="donate"></a>
+<h2 class="text-al-center"><u>Donate</u></h2>
+        <div id="animalneed" class="p1"><h3><i><%= @animal.summary %></i><h3></div>
+	<button type="button" class="btn btn-primary btn-lg btn-block center-block">Donate <section style="text-align:right"><%= @animal.amountRaised %>/<%= @animal.amount %></section></button>
+<a name="organization"></a>
+<h2 class="text-al-center"><u><%= "#{@animal.name}'s Home" %></u></h2>
+<br>
+<%= render 'organizations/show' %>
+     </div>
+   </div>
+  </div>
+  <!-- /#page-content-wrapper -->
+ </div>
 </div>
-</div>
+

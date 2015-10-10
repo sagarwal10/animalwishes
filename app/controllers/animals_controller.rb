@@ -16,6 +16,7 @@ class AnimalsController < ApplicationController
   # GET /animals/1
   # GET /animals/1.json
   def show
+     @organization = Organization.find(@animal.organization_id);
   end
 
   # GET /animals/new
