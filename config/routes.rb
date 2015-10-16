@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :admins
   resources :organizations
   resources :animals
   get "/animals/species/:species", to: "animals#index", as:  "species_show"
