@@ -33,6 +33,8 @@ gem 'devise'
 
 gem 'seed_dump'
 
+gem 'aws-sdk' 
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
