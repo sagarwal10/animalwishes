@@ -15,6 +15,7 @@
                 <div class="row">
                     <div class="col-sm-offset-1 col-sm-9">
 <div id="animalname"><h1><%= @animal.name %></h1></div>
+<%= link_to 'Edit', edit_animal_path(animal) %>
  <%= image_tag @animal.picture.url, class: "radius-box mtm fit" %>
 
 <a name="profile"></a>  
