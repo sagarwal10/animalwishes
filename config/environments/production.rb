@@ -44,13 +44,12 @@ Rails.application.configure do
   # config.force_ssl = true
 
    config.log_level = :debug # In any environment initializer, or
-   Rails.logger.level = 0
 
   # Prepend all log lines with the following tags.
   # config.log_tags = [ :subdomain, :uuid ]
 
   # Use a different logger for distributed setups.
-  # config.logger = Logger.new(STDOUT)
+  config.logger = Logger.new(STDOUT)
 
   # ActiveSupport::TaggedLogging.new(SyslogLogger.new)
 
