@@ -26,14 +26,12 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
+gem 'paperclip', github: 'thoughtbot/paperclip'
+gem 'aws-sdk', '<2.0'
 
-gem 'paperclip'
 
 gem 'devise'
 
-gem 'seed_dump'
-
-gem 'aws-sdk' 
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
