@@ -29,7 +29,7 @@
   </div>
   <div class="form-group field">
   <%= f.label :organizationName %>
-  <div class="form-control"><%= collection_select(:animal, :organization_id, Organization.all, :id, :organizationName, prompt: true) %></div>
+  <div class="form-control"><%= collection_select(:animal, :organization_id, @organizations, :id, :organizationName, prompt: true) %></div>
   </div>
   <div class="form-group field">
     <%= f.label :amount %><br>

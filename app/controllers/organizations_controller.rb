@@ -1,5 +1,6 @@
 class OrganizationsController < ApplicationController
   before_action :set_organization, only: [:show, :edit, :update, :destroy]
+  before_action :check_superuser_privelege, only: [:new, :edit] 
 
   # GET /organizations
   # GET /organizations.json
@@ -71,4 +72,17 @@ class OrganizationsController < ApplicationController
     def organization_params
       params.require(:organization).permit(:name, :about, :url, :logo)
     end
+
+    def check_superuser_privelege
+      if admin_signed_in?
+        if current_admin.superUser == false
+           flash[:error] = "You need superuser priveleges for that"
+           redirect_to edit_admin_registration_path
+	end
+      else 
+        redirect_to new_admin_session_path
+      end
+    end 
+
+
 end

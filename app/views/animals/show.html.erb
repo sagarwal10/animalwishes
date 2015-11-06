@@ -4,6 +4,9 @@
         <!-- Sidebar -->
         <div id="sidebar-wrapper">
             <ul class="sidebar-nav" role="tablist">
+   <% if @display_edit_link == 1 %>
+    <li role="presentation" class="sidebar-brand"><%= link_to 'Edit Entry', edit_animal_path(@animal) %></li>
+   <% end %>
     <li role="presentation" class="sidebar-brand"><a href="#profile" aria-controls="profile" role="tab" data-toggle="profile"><%= "About #{@animal.name}" %></a></li>
     <li role="presentation" class="sidebar-brand"><a href="#donate" aria-controls="messages" role="tab" data-toggle="donate">Donate</a></li>
     <li role="presentation" class="sidebar-brand"><a href="#organization" aria-controls="settings" role="tab" data-toggle="organization"><%= "#{@animal.name}'s Home" %></a></li>

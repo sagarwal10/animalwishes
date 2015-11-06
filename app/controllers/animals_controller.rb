@@ -1,5 +1,6 @@
 class AnimalsController < ApplicationController
   before_action :set_animal, only: [:show, :edit, :update, :destroy]
+  before_action :check_logged_in, only: [:new, :edit]
 
   # GET /animals
   # GET /animals.json
@@ -17,15 +18,28 @@ class AnimalsController < ApplicationController
   # GET /animals/1.json
   def show
      @organization = Organization.find(@animal.organization_id);
+     if admin_signed_in? && (@animal.organization_id == current_admin.organization_id ||
+			     current_admin.superUser == true)
+         @display_edit_link = 1
+     end 
   end
 
   # GET /animals/new
   def new
     @animal = Animal.new
+    set_possible_organizations
   end
 
   # GET /animals/1/edit
   def edit
+    
+    if current_admin.superUser == false &&
+       @animal.organization_id != nil && 
+       @animal.organization_id != current_admin.organization_id
+          flash[:error] = "You are not an admin for this animal's sanctuary"
+          redirect_to edit_admin_registration_path
+    end
+    set_possible_organizations
   end
 
   # POST /animals
@@ -78,4 +92,20 @@ class AnimalsController < ApplicationController
     def animal_params
       params.require(:animal).permit(:name, :species, :summary, :fullDescription, :amount, :amountRaised, :picture, :organization_id)
     end
-end
+
+    def set_possible_organizations
+       if current_admin.superUser == true
+           @organizations = Organization.all
+       else
+           @organizations = (Array.new).push(Organization.find(current_admin.organization_id))
+           @animal.organization_id = current_admin.organization_id
+       end
+    end 
+
+    def check_logged_in
+        unless admin_signed_in?
+           flash[:error] = "You need to be logged in to add an animal"
+	   redirect_to new_admin_session_path
+	end
+    end
+end	

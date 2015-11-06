@@ -11,21 +11,23 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="form-group field">
     <%= f.label :name %><br>
-    <%= f.text_field :name %>
+    <%= f.text_field :name, class:"form-control" %>
   </div>
-  <div class="field">
+  <div class="form-group field">
     <%= f.label :about %><br>
-    <%= f.text_area :about %>
+    <%= f.text_area :about, class:"form-control" %>
   </div>
-  <div class="field">
+  <div class="form-group field">
     <%= f.label :url %><br>
-    <%= f.text_field :url %>
+    <%= f.text_field :url, class:"form-control" %>
   </div>
-  Upload logo
-  <%= f.file_field :logo %>
-  <div class="actions">
+  <div class="form-group field">
+    <%= f.label :logo %><br>
+    <%= f.file_field :logo %>
+  </div>
+  <div class="form-group actions">
     <%= f.submit %>
   </div>
 <% end %>
