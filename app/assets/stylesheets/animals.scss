@@ -11,7 +11,7 @@ h1 {
   margin:auto;
 } 
 
-#animalindex {
+.animalindex {
 //  background-color: #0174df;
   color:yellow;
   text-align:center;
@@ -20,6 +20,7 @@ h1 {
   img {
     height:50%;
     width:85%;
+    // max-width:200px;
   }
 
   a {

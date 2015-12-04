@@ -1,43 +1,58 @@
-  <div class="container row">
-  <div class="col-lg-9 col-md-8 col-sm-6 col-xs-12">
-  <div id="pageheader"><h2>Animals in Need</h2></div>
+<div class="container">
+ <div class="row">
+    <div  class="text-center">
+        <h3>Sponsor An Animal's Needs</h3>
+        <br>
+        <p>Help with the upkeep or a special request from an animal friend in a sanctuary</p>
+    </div>
+  </div>
+  <div class="row"> 
+  <div id="categoryselect" class="hidden-lg hidden-md col-sm-3 col-sm-offset-9 col-xs-4 col-xs-offset-8">
+      <button id="animalselectdropdown" class="btn btn-default dropdown-toggle " type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+          Filter Animals
+          <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu "  aria-labelledby="dropdownMenu1"> 
+         <li class="pl1">
+	    <input type="checkbox" id="clearall-dropdown" name="animal" value="Clear All" /><b>Clear All</b>
+         </li>
+         <% @species.each do |s| %>
+         <li class="pl1">
+             <input type="checkbox" id="animalselector-dropdown-<%= s.species %>" class="animalselector" checked name="animal" value="<%= s.species %>" /><%= s.species %>
+         </li>
+         <% end %>
+      </ul>
+   </div>
   </div>
 
- <div id="categoryselect" class="dropdown col-lg-3 col-md-4 col-sm-6 col-xs-12 ">
-  <button class="btn btn-default dropdown-toggle ml50p" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-    Filter Animals
-    <span class="caret"></span>
-  </button>
-  <ul class="dropdown-menu pull-right "  aria-labelledby="dropdownMenu1"> 
-    <li>
-    <% @class_for_link = (@filter_param == nil) ? "selected" : "" %>
-    <%= link_to "All", animals_path, class:"#{@class_for_link}" %>
-    </li>
-    <% @species.each do |s| %>
-    <li>
-    <% @class_for_link = (@filter_param == s.species) ? "selected" : "" %>
-    <%= link_to "#{s.species}", species_show_path("#{s.species}"), class:"#{@class_for_link}" %>
-    </li>
-    <% end %>
-  </ul>
-</div>
-</div>
-
- <div id="animalpage" class="container row ">
-    <% @animals.each do |animal| %>
-    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-    <div id="animalindex" class="glassy-bg radius-box m1 ell">
-       <%= link_to animal_path(animal) do %>
-       <%= image_tag animal.picture.url(:small), class: "radius-box mtm" %>
+ <div class="row">
+    <div id="animallist-sidebar" class="hidden-xs hidden-sm col-lg-2 col-md-2">
+       <br>
+       <h4>Animals</h4>
+       <hr>
+       <% @species.each do |s| %>
+           <input type="checkbox" class="animalselector" id="animalselector-sidebar-<%= s.species %>" checked name="animal" value="<%= s.species %>" /><%= s.species %><br>
        <% end %>
-       <div id="animalcaption" class="caption">
-        <div id="animalname"><strong><%= animal.name %></strong></div>
-        <div id="animalneed" class="pr1 pl1 pb1 pt1"><i><%= animal.summary %></i></div>
-        <div id="animaldescription" class="pr1 pl1"><%= truncate(animal.fullDescription, length:80) %></div>
-        <div id="animalamountindexpage" class="pb2 pr2" ><%= animal.amountRaised %>/<%= animal.amount %></div>
+       <input type="checkbox" id="clearall" name="animal" value="Clear All" /><b>Clear All</b><br>
     </div>
-     </div>
-     </div>
-    <% end %>
-</div>
-<br>
+    <div id="animallist" class="col-lg-10 col-md-10">
+        <div class="row">
+        <% @animals.each do |animal| %>
+        <div class="animal-<%= animal.species %> col-lg-3 col-md-4 col-sm-6 col-xs-8 col-xs-offset-3 col-lg-offset-0 col-md-offset-0 col-sm-offset-0 ">
+           <div class="animalindex glassy-bg radius-box m1 ell">
+             <%= link_to animal_path(animal) do %>
+             <%= image_tag animal.picture.url(:small), class: "radius-box mtm" %>
+             <% end %>
+             <div id="animalcaption" class="caption">
+                 <div id="animalname"><strong><%= animal.name %></strong></div>
+                 <div id="animalneed" class="pr1 pl1 pb1 pt1"><i><%= animal.summary %></i></div>
+                 <div id="animaldescription" class="pr1 pl1"><%= truncate(animal.fullDescription, length:80) %></div>
+                 <div id="animalamountindexpage" class="pb2 pr2" ><%= animal.amountRaised %>/<%= animal.amount %></div>
+             </div>
+           </div>
+        </div>
+        <% end %>
+    </div>
+    </div>
+ </div>
+<div>
