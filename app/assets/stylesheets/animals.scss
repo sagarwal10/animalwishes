@@ -18,9 +18,11 @@ h1 {
   height:25em;
   
   img {
-    height:50%;
+    padding:0.5em;
+    height:auto;
     width:85%;
-    // max-width:200px;
+    max-width:250px;
+    max-height:200px;
   }
 
   a {
@@ -67,7 +69,8 @@ h1 {
 
 #animalamountindexpage {
   position:absolute;
-  top:25em;
+  font-size:0.7em;
+  bottom:1em;
   right:10%;
 }
 #animalamountshowpage {
