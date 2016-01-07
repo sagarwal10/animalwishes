@@ -1,5 +1,5 @@
 class AnimalsController < ApplicationController
-  before_action :set_animal, only: [:show, :edit, :update, :destroy]
+  before_action :set_animal, only: [:show, :purchase, :edit, :update, :destroy]
   before_action :check_logged_in, only: [:new, :edit]
 
   # GET /animals
@@ -81,6 +81,41 @@ class AnimalsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def purchase
+    require 'paypal-sdk-adaptivepayments'
+    PayPal::SDK.configure(
+       :mode      => "sandbox",  # Set "live" for production
+       :app_id    => "APP-80W284485P519543T",
+       :username  => "sagarwal10-facilitator_api1.hotmail.com",
+       :password  => "88FUBVZLK8K6H42K",
+       :signature => "An5ns1Kso7MWUdW4ErQKJJJ4qi4-AEI.FvtOcPMLhsRn.1dCD3n01X.1" )
+
+       @api = PayPal::SDK::AdaptivePayments.new
+
+@pay = @api.build_pay({
+  :actionType => "PAY",
+  :cancelUrl => animal_url(@animal),
+  :currencyCode => "USD",
+  :feesPayer => "SENDER",
+  :ipnNotificationUrl => "http://localhost:3000/samples/adaptive_payments/ipn_notify",
+  :receiverList => {
+    :receiver => [{
+      :amount => params[:amount],
+      :email => "sagarwal10@hotmail.com" }] },
+  :returnUrl => animal_url(@animal) })
+
+# Make API call & get response
+@response = @api.pay(@pay)
+
+# Access response
+if @response.success? && @response.payment_exec_status != "ERROR"
+  @response.payKey
+  redirect_to @api.payment_url(@response)  # Url to complete payment
+else
+  @response.error[0].message
+end
+  end 
 
   private
     # Use callbacks to share common setup or constraints between actions.

@@ -55,3 +55,4 @@ group :development do
   gem 'spring'
 end
 
+gem 'paypal-sdk-adaptivepayments'

@@ -24,8 +24,12 @@
 <a name="donate"></a>
 <h2 class="text-al-center"><u>Donate</u></h2>
         <div id="animalneed" class="p1"><h3><i><%= @animal.summary %></i><h3></div>
-	<button type="button" class="btn btn-primary btn-lg btn-block center-block">Donate <section style="text-align:right"><%= @animal.amountRaised %>/<%= @animal.amount %></section></button>
-<a name="organization"></a>
+
+<%= form_tag(purchase_url(@animal.id), method: "get") do %>
+<div class="input-group">
+	<button type="submit" class="btn btn-primary btn-lg btn-block center-block">Donate <section style="text-align:right"><%= text_field_tag 'amount' %> <%= @animal.amountRaised %>/<%= @animal.amount %></section></button>
+<% end %>
+
 <h2 class="text-al-center"><u><%= "#{@animal.name}'s Home" %></u></h2>
 <br>
 <%= render 'organizations/show' %>

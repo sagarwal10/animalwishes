@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :organizations
   resources :animals
   get "/animals/species/:species", to: "animals#index", as:  "species_show"
+  get 'animals/:id/purchase' => 'animals#purchase', as: :purchase
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -1,0 +1,31 @@
+test: &default
+
+  # Credentials for REST APIs
+  client_id: EBWKjlELKMYqRNQ6sYvFo64FtaRLRR5BdHEESmha49TM
+  client_secret: EO422dn3gQLgDbuwqTjzrFgFtaRLRR5BdHEESmha49TM
+
+  # Mode can be 'live' or 'sandbox'
+  mode: sandbox
+
+  # Credentials for Classic APIs
+  app_id: APP-80W284485P519543T
+  username: sagarwal10-facilitator_api1.hotmail.com
+  password: 88FUBVZLK8K6H42K
+  signature: An5ns1Kso7MWUdW4ErQKJJJ4qi4-AEI.FvtOcPMLhsRn.1dCD3n01X.1 
+  # # With Certificate
+  # cert_path: "config/cert_key.pem"
+  sandbox_email_address: sagarwal10-facilitator@hotmail.com
+
+  # # IP Address
+  # ip_address: 127.0.0.1
+  # # HTTP Proxy
+  # http_proxy: http://proxy-ipaddress:3129/
+
+  # verbose_logging: true
+
+development:
+  <<: *default
+
+production:
+  <<: *default
+  mode: live
