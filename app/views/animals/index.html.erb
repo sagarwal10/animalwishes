@@ -1,11 +1,52 @@
 <div class="container">
  <div class="row">
-    <div  class="text-center">
-        <h3>Sponsor An Animal's Needs</h3>
-        <br>
-        <p>Help with the upkeep or a special request from an animal friend in a sanctuary</p>
+   <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+     <!-- Indicators -->
+       <ol class="carousel-indicators">
+         <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+         <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+         <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+       </ol>
+
+     <!-- Wrapper for slides -->
+       <div class="carousel-inner" role="listbox">
+          <div class="item active">
+               <%= image_tag("cow.jpeg") %>
+               <div class="carousel-caption">
+        <h3>Discover the stories and unique personalities of rescued Animals and Support them</h3>
+        <p>100% of your donation goes to the Animals and their Sanctuaries</p>
+               </div>
+           </div>
+           <div class="item">
+               <%= image_tag("duck.jpg") %>
+               <div class="carousel-caption">
+        <h3>Discover the stories and unique personalities of rescued Animals and Support them</h3>
+        <p>100% of your donation goes to the Animals and their Sanctuaries</p>
+               </div>
+           </div>
+           <div class="item">
+               <%= image_tag("rabbits.jpg") %>
+               <div class="carousel-caption">
+        <h3>Discover the stories and unique personalities of rescued Animals and Support them</h3>
+        <p>100% of your donation goes to the Animals and their Sanctuaries</p>
+               </div>
+           </div>
+        </div>
+
+     <!-- Controls -->
+        <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+        </a>
+    </div>
+    <div  class="main-text ">
     </div>
   </div>
+
   <div class="row"> 
   <div id="categoryselect" class="hidden-lg hidden-md col-sm-3 col-sm-offset-9 col-xs-4 col-xs-offset-8">
       <button id="animalselectdropdown" class="btn btn-default dropdown-toggle " type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">

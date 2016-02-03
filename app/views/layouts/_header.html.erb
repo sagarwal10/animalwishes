@@ -8,12 +8,12 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <div ><%= image_tag("Logo.png", width: '300') %></div>
+      <div class="ml1"><%= image_tag("Logo.png", width: '275') %></div>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav navbar-right">
+      <ul id="topmenuitems" class="mr2 nav navbar-nav navbar-right">
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Find & Donate<span class="caret"></span></a>
           <ul id="dropdownmenu" class="dropdown-menu">
@@ -33,7 +33,7 @@
             </li>
           </ul>
         </li>
-        <li><a href="#">About Us</a></li>
+        <li><a style="margin:auto" href="#">About Us</a></li>
         <% if admin_signed_in? %>
         <li class="dropdown">
 	    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">

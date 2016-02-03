@@ -7,6 +7,11 @@ h1 {
    color:white;
 }
 
+#topmenuitems {
+    margin-top:1.5em;
+    font-size:1.2em;
+} 
+
 #animalpage {
   margin:auto;
 } 
@@ -76,3 +81,12 @@ h1 {
 #animalamountshowpage {
   margin-left:75%;
 }
+
+.main-text {
+    position: absolute;
+    top: 50%;
+    left: 25%;
+    margin-right:auto;
+    color: #FFF;
+}
+
