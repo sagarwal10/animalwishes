@@ -11,24 +11,21 @@
      <!-- Wrapper for slides -->
        <div class="carousel-inner" role="listbox">
           <div class="item active">
-               <%= image_tag("cow.jpeg") %>
+               <image src="https://s3.amazonaws.com/sagarwal10-animals/static/cow.jpeg">
                <div class="carousel-caption">
-        <h3>Discover the stories and unique personalities of rescued Animals and Support them</h3>
-        <p>100% of your donation goes to the Animals and their Sanctuaries</p>
+               <%= @carousel_caption.html_safe %>
                </div>
            </div>
            <div class="item">
                <%= image_tag("duck.jpg") %>
                <div class="carousel-caption">
-        <h3>Discover the stories and unique personalities of rescued Animals and Support them</h3>
-        <p>100% of your donation goes to the Animals and their Sanctuaries</p>
+               <%= @carousel_caption.html_safe %>
                </div>
            </div>
            <div class="item">
                <%= image_tag("rabbits.jpg") %>
                <div class="carousel-caption">
-        <h3>Discover the stories and unique personalities of rescued Animals and Support them</h3>
-        <p>100% of your donation goes to the Animals and their Sanctuaries</p>
+               <%= @carousel_caption.html_safe %>
                </div>
            </div>
         </div>

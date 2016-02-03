@@ -12,6 +12,8 @@ class AnimalsController < ApplicationController
         @animals = Animal.where("species = ?", params[:species]) 
     end
     @species = Animal.select("species").distinct
+    @carousel_caption = "<h3>Discover the stories and unique personalities of rescued Animals and Support them</h3>
+        <p>100% of your donation goes to the Animals and their Sanctuaries</p>"
   end
 
   # GET /animals/1
