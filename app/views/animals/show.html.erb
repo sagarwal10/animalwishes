@@ -17,20 +17,37 @@
                 <div class="row">
                     <div class="col-sm-offset-1 col-sm-9">
 <div id="animalname"><h1><%= @animal.name %></h1></div>
- <%= image_tag @animal.picture.url, class: "radius-box mtm fit" %>
+<%= image_tag @animal.picture.url, class: "radius-box mtm fit" %>
 
 <a name="profile"></a>  
-        <div id="animaldescription" class=""><%= @animal.fullDescription %></div>
+<div id="animaldescription" class=""><%= @animal.fullDescription %></div>
+<br><br>
 <a name="donate"></a>
 <h2 class="text-al-center"><u>Donate</u></h2>
         <div id="animalneed" class="p1"><h3><i><%= @animal.summary %></i><h3></div>
+<h5 class="text-al-center">$<%= @animal.amountRaised %> of $<%= @animal.amount %> raised</h5>
+<div class="progress">
+  <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width:<%= @animal.amountRaised*100/@animal.amount %>%;" >
+    <%= (@animal.amountRaised*100/@animal.amount).floor %>%
+  </div>
+</div>
 
-<%= form_tag(purchase_url(@animal.id), method: "get") do %>
-<div class="input-group">
-	<button type="submit" class="btn btn-primary btn-lg btn-block center-block">Donate <section style="text-align:right"><%= text_field_tag 'amount' %> <%= @animal.amountRaised %>/<%= @animal.amount %></section></button>
+<div class="pull-right mrm">$<%= @animal.amount - @animal.amountRaised%> needed</div>
+<br>
+<%= form_tag(purchase_url(@animal.id), method: "get",class:"pull-right", id:"donateForm") do %>
+<%= text_field_tag 'amount', nil, class:"donateField controls", 
+    placeholder:"Enter donation amount", data: {
+    :validation => "required number",
+    "validation-error-msg" => "Please enter a valid amount."
+    } %>
+<button type="submit" class="donateForm btn btn-primary ">Donate 
+</button>
+<br>
+<p id="donateFormError" class="bg-danger"></p>
 <% end %>
-
-<h2 class="text-al-center"><u><%= "#{@animal.name}'s Home" %></u></h2>
+<br>
+<br><br><br>
+<h2 class="text-al-center" ><u><%= "#{@animal.name}'s Home" %></u></h2>
 <br>
 <%= render 'organizations/show' %>
      </div>
@@ -39,4 +56,3 @@
   <!-- /#page-content-wrapper -->
  </div>
 </div>
-

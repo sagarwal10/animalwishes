@@ -16,6 +16,28 @@ h1 {
   margin:auto;
 } 
 
+#topBanner {
+  background-color:#4e5d6c; 
+  margin-bottom: 1.5em;
+  padding-top:2em;
+  padding-bottom: 2em;
+
+  #topLine {
+     font-size:1.5em;
+  } 
+
+  #bottomLine {
+     font-size:1em;
+  }
+}
+
+.aboutImg {
+    padding:0.5em;
+    height:auto;
+    width:85%;
+    max-width:250px;
+    max-height:200px;
+}
 .animalindex {
 //  background-color: #0174df;
   color:yellow;
@@ -90,6 +112,10 @@ h1 {
     color: #FFF;
 }
 
+.donateField {
+    height:2.6em;
+    margin:5px;
+}
 .carousel-caption {
 text-shadow: 2px 2px 18px rgba(255, 255, 255, 1);
 }

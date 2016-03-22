@@ -85,6 +85,14 @@ class AnimalsController < ApplicationController
   end
 
   def purchase
+    logger.info("User has input: #{params[:amount]}")
+    if params[:amount] == "0" || params[:amount] == ""
+        logger.info("Invalid input")
+        @errors = "Please enter a dollar amount"
+        redirect_to @animal
+    else 
+        logger.info("Valid input")
+    end
     require 'paypal-sdk-adaptivepayments'
     PayPal::SDK.configure(
        :mode      => "sandbox",  # Set "live" for production

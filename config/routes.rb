@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   devise_for :admins
   resources :organizations
   resources :animals
+  get "/about", to:"organizations#about", as:"about"
   get "/animals/species/:species", to: "animals#index", as:  "species_show"
   get 'animals/:id/purchase' => 'animals#purchase', as: :purchase
   # The priority is based upon order of creation: first created -> highest priority.

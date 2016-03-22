@@ -7,8 +7,9 @@
 default: &default
   adapter: postgresql
   database: db/animalwishes_default
-  pool: 5
-  timeout: 5000
+  host: localhost
+  username: animalwishes
+  password: Abcd1234
 
 development:
   <<: *default
