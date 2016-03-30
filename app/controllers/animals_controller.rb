@@ -107,12 +107,12 @@ class AnimalsController < ApplicationController
   :actionType => "PAY",
   :cancelUrl => animal_url(@animal),
   :currencyCode => "USD",
-  :feesPayer => "SENDER",
+  :feesPayer => "EACHRECEIVER",
   :ipnNotificationUrl => "http://localhost:3000/samples/adaptive_payments/ipn_notify",
   :receiverList => {
     :receiver => [{
       :amount => params[:amount],
-      :email => "sagarwal10@hotmail.com" }] },
+      :email => "animal-sanctuary-1@gmail.com" }] },
   :returnUrl => animal_url(@animal) })
 
 # Make API call & get response
