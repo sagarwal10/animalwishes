@@ -1,0 +1,12 @@
+
+Make sure the db/seeds.rb file has no admin information (create that manually).
+Make sure organizations are listed first then the Animals. 
+
+To create a seed file: 
+https://github.com/rroblak/seed_dump
+
+rake db:reset (to drop the database)
+rake db:setup (will populate the database from db/seeds.rb)
+
+Additional reference: 
+http://www.xyzpub.com/en/ruby-on-rails/3.2/seed_rb.html

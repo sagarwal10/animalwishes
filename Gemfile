@@ -56,3 +56,5 @@ group :development do
 end
 
 gem 'paypal-sdk-adaptivepayments'
+
+gem 'seed_dump'
