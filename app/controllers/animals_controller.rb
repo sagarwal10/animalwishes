@@ -1,5 +1,5 @@
 class AnimalsController < ApplicationController
-  before_action :set_animal, only: [:show, :purchase, :edit, :update, :destroy]
+  before_action :set_animal, only: [:show, :purchase, :purchase_succeeded, :purchase_failed, :edit, :update, :destroy]
   before_action :check_logged_in, only: [:new, :edit]
 
   # GET /animals
@@ -94,12 +94,14 @@ class AnimalsController < ApplicationController
         logger.info("Valid input")
     end
     require 'paypal-sdk-adaptivepayments'
-    PayPal::SDK.configure(
+
+   PayPal::SDK.configure(
        :mode      => "sandbox",  # Set "live" for production
        :app_id    => "APP-80W284485P519543T",
        :username  => "sagarwal10-facilitator_api1.hotmail.com",
        :password  => "88FUBVZLK8K6H42K",
-       :signature => "An5ns1Kso7MWUdW4ErQKJJJ4qi4-AEI.FvtOcPMLhsRn.1dCD3n01X.1" )
+       :signature => "An5ns1Kso7MWUdW4ErQKJJJ4qi4-AEI.FvtOcPMLhsRn.1dCD3n01X.1" ) 
+ 
 
        @api = PayPal::SDK::AdaptivePayments.new
 
@@ -109,12 +111,9 @@ class AnimalsController < ApplicationController
   :currencyCode => "USD",
   :feesPayer => "EACHRECEIVER",
   :ipnNotificationUrl => "http://localhost:3000/samples/adaptive_payments/ipn_notify",
-  :receiverList => {
-    :receiver => [{
-      :amount => params[:amount],
-      :email => "animal-sanctuary-1@gmail.com" }] },
-  :returnUrl => animal_url(@animal) })
-
+  :returnUrl => purchase_succeded_url(@animal, params[:amount]),
+  :cancelUrl => purchase_failed_url(@animal) })
+  @pay.receiverList.receiver[0] = { :amount => params[:amount], :email => "info@animalplace.org" }
 # Make API call & get response
 @response = @api.pay(@pay)
 
@@ -125,6 +124,13 @@ if @response.success? && @response.payment_exec_status != "ERROR"
 else
   @response.error[0].message
 end
+  end 
+
+  def purchase_succeeded
+     @amount = params[:amount]
+  end
+
+  def purchase_failed
   end 
 
   private

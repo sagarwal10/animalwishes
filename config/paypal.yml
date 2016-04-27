@@ -9,12 +9,12 @@ test: &default
 
   # Credentials for Classic APIs
   app_id: APP-80W284485P519543T
-  username: sagarwal10-facilitator_api1.hotmail.com
+  # username: sagarwal10-facilitator_api1.hotmail.com
   password: 88FUBVZLK8K6H42K
   signature: An5ns1Kso7MWUdW4ErQKJJJ4qi4-AEI.FvtOcPMLhsRn.1dCD3n01X.1 
   # # With Certificate
   # cert_path: "config/cert_key.pem"
-  sandbox_email_address: sagarwal10-facilitator@hotmail.com
+  # sandbox_email_address: sagarwal10-facilitator@hotmail.com
 
   # # IP Address
   # ip_address: 127.0.0.1
