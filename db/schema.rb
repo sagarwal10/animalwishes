@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151105012057) do
+ActiveRecord::Schema.define(version: 20160430054853) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,13 +48,14 @@ ActiveRecord::Schema.define(version: 20151105012057) do
     t.text     "fullDescription"
     t.decimal  "amount"
     t.decimal  "amountRaised"
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
     t.string   "picture_file_name"
     t.string   "picture_content_type"
     t.integer  "picture_file_size"
     t.datetime "picture_updated_at"
     t.integer  "organization_id"
+    t.boolean  "monthly_sponsorship",  default: false
   end
 
   add_index "animals", ["organization_id"], name: "index_animals_on_organization_id", using: :btree

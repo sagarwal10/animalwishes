@@ -9,7 +9,7 @@ class AnimalsController < ApplicationController
     if (params[:species] == nil) 
         @animals = Animal.all
     else
-        @animals = Animal.where("species = ?", params[:species]) 
+        @animals = Animal.where("species = ?", params[:species])
     end
     @species = Animal.select("species").distinct
     @carousel_caption = "<h3>Discover the stories and unique personalities of rescued Animals and Support them</h3>
@@ -19,7 +19,7 @@ class AnimalsController < ApplicationController
   # GET /animals/1
   # GET /animals/1.json
   def show
-     @organization = Organization.find(@animal.organization_id);
+     set_organization
      if admin_signed_in? && (@animal.organization_id == current_admin.organization_id ||
 			     current_admin.superUser == true)
          @display_edit_link = 1
@@ -85,52 +85,60 @@ class AnimalsController < ApplicationController
   end
 
   def purchase
-    logger.info("User has input: #{params[:amount]}")
     if params[:amount] == "0" || params[:amount] == ""
-        logger.info("Invalid input")
         @errors = "Please enter a dollar amount"
         redirect_to @animal
-    else 
-        logger.info("Valid input")
-    end
-    require 'paypal-sdk-adaptivepayments'
+    end 
 
-   PayPal::SDK.configure(
-       :mode      => "sandbox",  # Set "live" for production
-       :app_id    => "APP-80W284485P519543T",
-       :username  => "sagarwal10-facilitator_api1.hotmail.com",
-       :password  => "88FUBVZLK8K6H42K",
-       :signature => "An5ns1Kso7MWUdW4ErQKJJJ4qi4-AEI.FvtOcPMLhsRn.1dCD3n01X.1" ) 
- 
+    init_paypal_api
+    @pay = @api.build_pay({
+  		:actionType => "PAY",
+  		:currencyCode => "USD",
+  		:feesPayer => "EACHRECEIVER",
+  		:returnUrl => purchase_succeded_url(@animal),
+  		:cancelUrl => purchase_failed_url(@animal) })
 
-       @api = PayPal::SDK::AdaptivePayments.new
+	@pay.receiverList.receiver[0] = { :amount => params[:amount], 
+					  :email => "info@harvesthomesanctuary.org" }
 
-@pay = @api.build_pay({
-  :actionType => "PAY",
-  :cancelUrl => animal_url(@animal),
-  :currencyCode => "USD",
-  :feesPayer => "EACHRECEIVER",
-  :ipnNotificationUrl => "http://localhost:3000/samples/adaptive_payments/ipn_notify",
-  :returnUrl => purchase_succeded_url(@animal, params[:amount]),
-  :cancelUrl => purchase_failed_url(@animal) })
-  @pay.receiverList.receiver[0] = { :amount => params[:amount], :email => "info@animalplace.org" }
-# Make API call & get response
-@response = @api.pay(@pay)
+	# Make API call & get response
+	@response = @api.pay(@pay)
 
-# Access response
-if @response.success? && @response.payment_exec_status != "ERROR"
-  @response.payKey
-  redirect_to @api.payment_url(@response)  # Url to complete payment
-else
-  @response.error[0].message
-end
+	# Access response
+	if @response.success? && @response.payment_exec_status != "ERROR"
+  		logger.info(@response.payKey)
+		session[:paypalPaykey] = @response.payKey
+  		redirect_to @api.payment_url(@response)  # Url to complete payment
+	else
+		logger.info("Fail")
+  		@response.error[0].message
+	end
   end 
 
   def purchase_succeeded
-     @amount = params[:amount]
+     set_organization
+     init_paypal_api
+
+     # Build request object
+     @payment_details = @api.build_payment_details({
+     :payKey => session[:paypalPaykey] })
+     session.delete(:paypalPaykey)
+
+     # Make API call & get response
+     @payment_details_response = @api.payment_details(@payment_details)
+     logger.info("Payment details")
+     logger.info(@payment_details_response.status)
+     logger.info(@payment_details_response.senderEmail)
+     logger.info(@payment_details_response.payKey)
+     logger.info(@payment_details_response.paymentInfoList.paymentInfo[0].receiver.amount)
   end
 
   def purchase_failed
+      # @amount = session[:animal_donation_amount]
+      set_organization
+      session.delete(:paypalPaykey)
+      @donation_message = "Your donation payment was either cancelled or unsuccessful."
+      render "show"
   end 
 
   private
@@ -139,9 +147,13 @@ end
       @animal = Animal.find(params[:id])
     end
 
+    def set_organization
+      @organization = Organization.find(@animal.organization_id);
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def animal_params
-      params.require(:animal).permit(:name, :species, :summary, :fullDescription, :amount, :amountRaised, :picture, :organization_id)
+      params.require(:animal).permit(:name, :species, :summary, :fullDescription, :amount, :amountRaised, :picture, :organization_id, :monthly_sponsorship)
     end
 
     def set_possible_organizations
@@ -159,4 +171,17 @@ end
 	   redirect_to new_admin_session_path
 	end
     end
+
+    def init_paypal_api
+        require 'paypal-sdk-adaptivepayments'
+        PayPal::SDK.configure(
+       		:mode      => "sandbox",  # Set "live" for production
+       		:app_id    => "APP-80W284485P519543T",
+       		:username  => "sagarwal10-facilitator_api1.hotmail.com",
+       		:password  => "88FUBVZLK8K6H42K",
+       		:signature => "An5ns1Kso7MWUdW4ErQKJJJ4qi4-AEI.FvtOcPMLhsRn.1dCD3n01X.1" ) 
+ 
+         @api = PayPal::SDK::AdaptivePayments.new
+     end
+
 end	

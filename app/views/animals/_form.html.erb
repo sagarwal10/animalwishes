@@ -27,6 +27,10 @@
     <%= f.label :fullDescription %><br>
     <%= f.text_area :fullDescription, class:"form-control" %>
   </div>
+  <div class="form-horizontal field">
+    <%= f.check_box :monthly_sponsorship %>
+    <%= f.label "Monthly Sponsorship" %><br>
+  </div>
   <div class="form-group field">
   <%= f.label :organizationName %>
   <div class="form-control"><%= collection_select(:animal, :organization_id, @organizations, :id, :organizationName, prompt: true) %></div>
