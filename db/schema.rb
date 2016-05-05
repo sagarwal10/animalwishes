@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160430054853) do
+ActiveRecord::Schema.define(version: 20160505045936) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -60,6 +60,17 @@ ActiveRecord::Schema.define(version: 20160430054853) do
 
   add_index "animals", ["organization_id"], name: "index_animals_on_organization_id", using: :btree
 
+  create_table "donation_records", force: :cascade do |t|
+    t.string   "paypalKey"
+    t.string   "senderEmail"
+    t.decimal  "amount"
+    t.integer  "animal_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "donation_records", ["animal_id"], name: "index_donation_records_on_animal_id", using: :btree
+
   create_table "organizations", force: :cascade do |t|
     t.string   "name"
     t.text     "about"
@@ -70,8 +81,11 @@ ActiveRecord::Schema.define(version: 20160430054853) do
     t.string   "logo_content_type"
     t.integer  "logo_file_size"
     t.datetime "logo_updated_at"
+    t.string   "paypalEmail"
+    t.string   "contactEmail"
   end
 
   add_foreign_key "admins", "organizations"
   add_foreign_key "animals", "organizations"
+  add_foreign_key "donation_records", "animals"
 end

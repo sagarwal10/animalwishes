@@ -95,11 +95,12 @@ class AnimalsController < ApplicationController
   		:actionType => "PAY",
   		:currencyCode => "USD",
   		:feesPayer => "EACHRECEIVER",
+		:memo => "Donation for " + @animal.name,
   		:returnUrl => purchase_succeded_url(@animal),
   		:cancelUrl => purchase_failed_url(@animal) })
 
 	@pay.receiverList.receiver[0] = { :amount => params[:amount], 
-					  :email => "info@harvesthomesanctuary.org" }
+					  :email => @animal.organization.paypalEmail }
 
 	# Make API call & get response
 	@response = @api.pay(@pay)
@@ -122,15 +123,29 @@ class AnimalsController < ApplicationController
      # Build request object
      @payment_details = @api.build_payment_details({
      :payKey => session[:paypalPaykey] })
-     session.delete(:paypalPaykey)
 
      # Make API call & get response
      @payment_details_response = @api.payment_details(@payment_details)
-     logger.info("Payment details")
      logger.info(@payment_details_response.status)
-     logger.info(@payment_details_response.senderEmail)
-     logger.info(@payment_details_response.payKey)
-     logger.info(@payment_details_response.paymentInfoList.paymentInfo[0].receiver.amount)
+     if (@payment_details_response.status == "COMPLETED")
+        if (@animal.donation_records.find_by(:paypalKey => session[:paypalPaykey] ) == nil)
+	   @donation_amount = 
+	       @payment_details_response.paymentInfoList.paymentInfo[0].receiver.amount
+           donation=DonationRecord.new
+           donation.paypalKey = session[:paypalPaykey]
+           donation.amount = @payment_details_response.paymentInfoList.paymentInfo[0].receiver.amount
+           donation.senderEmail = @payment_details_response.senderEmail
+           donation.animal = @animal
+           donation.save
+	   @animal.amountRaised += donation.amount
+	   @animal.save
+           session.delete(:paypalPaykey)
+        else
+            logger.info("****** RECORD EXISTs ********")
+        end
+     else 
+	redirect_to purchase_failed_url(@animal)
+     end
   end
 
   def purchase_failed

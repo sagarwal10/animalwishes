@@ -1,1 +1,24 @@
-Purchase succeeded
+<div class="row">
+<div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-6 col-xs-offset-3">
+<div class="text-al-center"><h2>Thank You!</h2></div>
+<br>
+<br>
+Your donation of $<%= @donation_amount %> to <%= @animal.name %> is deeply appreciated.
+<br>
+An email will be sent to you with details of your donation.
+<br>
+<br>
+<div class="text-al-center">
+   <%= link_to 'Browse More Animals', animals_path %>
+</div>
+<br> 
+<%= image_tag @animal.picture.url, class: "radius-box mtm fit" %>
+<br>
+<br>
+<%= render 'organizations/logo' %>
+<br>
+<br>
+<br>
+<br>
+</div>
+</div>
