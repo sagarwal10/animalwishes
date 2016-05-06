@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>On behalf of the Animals, we thank you!</h1>
+    <p>
+      We appreciate your donation of $<%= @amount %> to <%= @name %> the rooster.
+      <br>
+      <br>
+      An email has also been sent to Harvest Home Animal Sanctuary.
+      <br>
+      Feel free to contact them at <%= @sanctuary_email %>.
+    </p>
+    <p>
+      Please come back again soon to see more of our animals.
+    </p>
+    <p>Thanks for your support and have a great day!</p>
+    <br>
+    <br>
+ <%= link_to 'Animal Wishes', "http://animalwishes.herokuapp.com" %>
+  </body>
+</html>

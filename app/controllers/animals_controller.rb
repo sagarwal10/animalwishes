@@ -128,7 +128,9 @@ class AnimalsController < ApplicationController
      @payment_details_response = @api.payment_details(@payment_details)
      logger.info(@payment_details_response.status)
      if (@payment_details_response.status == "COMPLETED")
-        if (@animal.donation_records.find_by(:paypalKey => session[:paypalPaykey] ) == nil)
+	donation_record = 
+               @animal.donation_records.find_by(:paypalKey => session[:paypalPaykey])
+	if (donation_record == nil)
 	   @donation_amount = 
 	       @payment_details_response.paymentInfoList.paymentInfo[0].receiver.amount
            donation=DonationRecord.new
@@ -140,7 +142,18 @@ class AnimalsController < ApplicationController
 	   @animal.amountRaised += donation.amount
 	   @animal.save
            session.delete(:paypalPaykey)
+
+	   # Send a confirmation email
+	   AnimalwishesMailer.donation_confirmation_email('slowreader@gmail.com',							    #@payment_details_response.senderEmail 
+							  @animal.name, 
+							  donation.amount,
+							  #@animal.organization.contactEmail
+							  'shalabh94086@gmail.com').deliver
+	   logger.info("Mail sent")
+	   AnimalwishesMailer.donation_confirmation_email('slowreader@gmail.com').deliver_now
+	   logger.info("Mail sent")
         else
+	   @donation_amount = donation_record.amount
             logger.info("****** RECORD EXISTs ********")
         end
      else 
