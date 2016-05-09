@@ -52,6 +52,19 @@ class OrganizationsController < ApplicationController
     end
   end
 
+  def contact	
+	@captcha_error = nil
+	logger.info(params[:name])
+	if (verify_recaptcha == false)
+	    @captcha_error = "You failed to verify that you're not a robot - please check the Captcha field in the form below and resubmit"
+	    render 'about' and return
+	end
+
+        AnimalwishesMailer.contact_form_email(params[:email],
+					      params[:name],
+					      params[:message]).deliver_now
+  end
+
   # DELETE /organizations/1
   # DELETE /organizations/1.json
   def destroy

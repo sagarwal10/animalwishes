@@ -6,19 +6,17 @@
   <body>
     <h1>On behalf of the Animals, we thank you!</h1>
     <p>
-      We appreciate your donation of $<%= @amount %> to <%= @name %> the rooster.
+      We appreciate your donation of $<%= @amount %> to <%= @name %>.
       <br>
       <br>
-      An email has also been sent to Harvest Home Animal Sanctuary.
+      An email has also been sent to <%= @sanctuary_name %>.
       <br>
       Feel free to contact them at <%= @sanctuary_email %>.
     </p>
     <p>
-      Please come back again soon to see more of our animals.
-    </p>
     <p>Thanks for your support and have a great day!</p>
     <br>
     <br>
- <%= link_to 'Animal Wishes', "http://animalwishes.herokuapp.com" %>
+  <%= link_to 'Animal Wishes', "http://www.animalwishes.org" %>
   </body>
 </html>

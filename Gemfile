@@ -58,3 +58,7 @@ end
 gem 'paypal-sdk-adaptivepayments'
 
 gem 'seed_dump'
+
+gem 'sidekiq'
+
+gem "recaptcha", require: "recaptcha/rails"

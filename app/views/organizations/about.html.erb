@@ -1,9 +1,16 @@
 
 <div class="container">
 
-<div class="row text-al-center" id="topBanner">
-<div id="topLine">About AnimalWishes</div>
-</div>
+<% if @captcha_error != nil %>
+    <div class="row text-al-center alert alert-danger alert-dismissible" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <%= @captcha_error %>
+    </div>
+<% else %>
+   <div class="row text-al-center" id="topBanner">
+   <div id="topLine">About AnimalWishes</div>
+   </div>
+<% end %>
 
 <div class="row"> 
 <div class="col-md-2 ">
@@ -35,8 +42,32 @@ and sanctuaries on one website.
 So please show animals that have been fortunate enough to have
 been rescued or escaped that you care. 
 <br><br>
-Contact Me
+</div>
+<div class="col-md-6 col-md-offset-3">
+<div class="text-al-center"><u>Contact</u></div>
+<br>
+<br>
+<%= form_tag(contact_url) do %>
+  <div class="form-group">
+    <label>Name</label>
+    <%= text_field_tag 'name', nil, class:"form-control",
+    placeholder:"Enter Your name"  %>
+  </div>
+  <div class="form-group">
+    <label for="exampleInputEmail1">Email address</label>
+    <%= email_field_tag 'email', nil, class:"form-control",
+    placeholder:'Enter your email address', :required => true %>
+  </div>
+  <div class="form-group">
+    <label>Message</label>
+    <%= text_area_tag 'message', nil, rows:4, class:"form-control",
+        placeholder: "Enter your message", :required => true %>
+  </div>
+  <%= recaptcha_tags %>
+  <br>
+<button type="submit" class="btn btn-default btn-sm">Submit</button>
+<% end %>
+<br><br><br>
 </div>
 </div>
-
 </div>

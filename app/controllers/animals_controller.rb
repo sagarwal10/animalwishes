@@ -143,15 +143,20 @@ class AnimalsController < ApplicationController
 	   @animal.save
            session.delete(:paypalPaykey)
 
-	   # Send a confirmation email
-	   AnimalwishesMailer.donation_confirmation_email('slowreader@gmail.com',							    #@payment_details_response.senderEmail 
+	   # Send a confirmation email to the person who donated
+	   AnimalwishesMailer.donor_appreciation_email('slowreader@gmail.com',							    #@payment_details_response.senderEmail 
 							  @animal.name, 
-							  donation.amount,
+							  donation.amount.to_s(),
 							  #@animal.organization.contactEmail
-							  'shalabh94086@gmail.com').deliver
-	   logger.info("Mail sent")
-	   AnimalwishesMailer.donation_confirmation_email('slowreader@gmail.com').deliver_now
-	   logger.info("Mail sent")
+							  'shalabh94086@gmail.com',
+							@animal.organization.name).deliver_later
+
+	   # Send an email to the sanctuary about the donation
+	   AnimalwishesMailer.sanctuary_donation_email('slowreader@gmail.com',							    #@payment_details_response.senderEmail 
+							  @animal.name, 
+							  donation.amount.to_s(),
+							  #@animal.organization.contactEmail
+							  'shalabh94086@gmail.com').deliver_later
         else
 	   @donation_amount = donation_record.amount
             logger.info("****** RECORD EXISTs ********")

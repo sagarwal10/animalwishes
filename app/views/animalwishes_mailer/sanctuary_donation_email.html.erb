@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1><%= @name %> has received a new donation!</h1>
+    <p>
+      Animalwishes.org received a donation of $<%= @amount %> for <%= @name %>.
+      <br>
+      The paypal donor email was <%= @donor_email %>
+      <br>
+      <br>
+      Please send them a note of appreciation if possible.
+    </p>
+    <p>
+    <p>Have a great day!</p>
+    <br>
+    <br>
+  <%= link_to 'Animal Wishes', "http://www.animalwishes.org" %>
+  </body>
+</html>
