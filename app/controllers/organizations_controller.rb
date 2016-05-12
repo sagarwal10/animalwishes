@@ -62,7 +62,7 @@ class OrganizationsController < ApplicationController
 
         AnimalwishesMailer.contact_form_email(params[:email],
 					      params[:name],
-					      params[:message]).deliver_now
+					      params[:message]).deliver_later
   end
 
   # DELETE /organizations/1
