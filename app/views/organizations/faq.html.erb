@@ -1,0 +1,54 @@
+
+<div class="container">
+
+<% if @captcha_error != nil %>
+    <div class="row text-al-center alert alert-danger alert-dismissible" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <%= @captcha_error %>
+    </div>
+<% else %>
+   <div class="row text-al-center" id="topBanner">
+   <div id="topLine">How this website works & frequently asked questions</div>
+   </div>
+<% end %>
+
+<div class="row"> 
+<div class="col-md-4 ">
+<%= image_tag("gorilla.jpg", class:"aboutImg") %>
+</div>
+<div class="col-md-8">
+The hope behind this website is for us to better identify with animals as fellow sentient beings - beings with personalities, character, stories, emotions, struggles, needs, hopes & desires. 
+<br>
+<br> 
+<b>What are Animal Sanctuaries?</b><br>
+Animals face a lot of struggle in this World. They are enslaved in meat, egg & diary factory farms. <br>
+Or if they were raised as pets, they can be abused and often abandoned. <br>
+Millions of them perish. A lucky few escape or get rescued. But where do these animals go?<br><br>
+A handful of amazing individuals have committed themselves to taking care of these animals and letting them live out the rest of their lives in a peaceful and loving environment.<br><br>
+These sanctuaries are set up on farms where the animals have the freedom to live in a more natural environment.
+<br><br>
+<b>How do you select the animals & sanctuaries featured on the website?</b><br>
+We contact established sanctuaries around the World and invite them to be a part of the website. They then tell us which of their residents they want featured on the site. <br><br>
+Often they have their own website where you can donate directly. We encourage that and invite you to establish a relationship with them directly.
+The philosophy behind Animal Wishes is to just be a discovery portal to the various animals & sanctuaries.
+<br><br>
+<b>What is the money used for? How is the transaction handled?</b><br>
+The money is used by the sanctuaries for either monthly sponsorship of animals (for their food and feed) or sometimes for special projects (e.g. building fences or enclosures for the animals).<br><br>
+When you choose to donate to an animal, you are taken to a <b>PayPal</b> page where you log into your account and send money <b>directly</b> to the sanctuary. Paypal fees are paid by the sanctuary.<br><br>
+We do NOT receive or participate in the money exchange.  
+<br><br>
+<b>How is this website funded?</b><br>
+All of the money you donate goes directly to the sanctuary. Even though we facilitate the donation between you and the sanctuary, we do NOT participate in the money exchange. We do NOT collect any money, fees or commissions from anyone.<br><br>
+The hosting costs for this site are borne by us. We might add advertizing in the future or explicitly ask for donations to help offset these expenses.
+<br><br>
+<b>How do I get a tax donation receipt? How do I get updates on the animals?</b><br>
+Unfortunately, there is no standard procedure in place currently. <br><br>
+Right now your best bet is to email the sanctuary directly (if you choose to donate, you will receive an email with their contact information).
+<br><br>
+<br><br>
+If you have any other questions, please <%= link_to "contact us", about_path(anchor:"contact") %>. Thank you for your support.
+
+</div>
+</div>
+</div>
+<br><br><br><br><br>

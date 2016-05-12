@@ -4,8 +4,8 @@ Rails.application.routes.draw do
   resources :organizations
   resources :animals
   get "/about", to:"organizations#about", as:"about"
+  get "/faq", to:"organizations#faq", as:"faq"
   post "/contact", to:"organizations#contact", as:"contact"
-  get "/animals/species/:species", to: "animals#index", as:  "species_show"
   get 'animals/:id/purchase' => 'animals#purchase', as: :purchase
   get 'animals/:id/purchase_succeeded' => 'animals#purchase_succeeded', as: :purchase_succeded
   get 'animals/:id/purchase_failed' => 'animals#purchase_failed', as: :purchase_failed

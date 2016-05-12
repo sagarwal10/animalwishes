@@ -207,14 +207,7 @@ class AnimalsController < ApplicationController
 
     def init_paypal_api
         require 'paypal-sdk-adaptivepayments'
-        PayPal::SDK.configure(
-       		:mode      => "sandbox",  # Set "live" for production
-       		:app_id    => "APP-80W284485P519543T",
-       		:username  => "sagarwal10-facilitator_api1.hotmail.com",
-       		:password  => "88FUBVZLK8K6H42K",
-       		:signature => "An5ns1Kso7MWUdW4ErQKJJJ4qi4-AEI.FvtOcPMLhsRn.1dCD3n01X.1" ) 
- 
-         @api = PayPal::SDK::AdaptivePayments.new
+        @api = PayPal::SDK::AdaptivePayments.new
      end
 
 end	

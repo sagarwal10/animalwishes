@@ -14,7 +14,7 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul id="topmenuitems" class="mr2 nav navbar-nav navbar-right">
-        <li class="dropdown">
+        <!-- <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Find & Donate<span class="caret"></span></a>
           <ul id="dropdownmenu" class="dropdown-menu">
             <li><a href="#">Animal need</a></li>
@@ -32,7 +32,9 @@
             </form>
             </li>
           </ul>
-        </li>
+        </li> -->
+        <li><%= link_to "Home", root_path %></li>
+	<li><%= link_to "How This Works", faq_path %></li>
         <li><%= link_to "About", about_path %></li>
         <% if admin_signed_in? %>
         <li class="dropdown">
