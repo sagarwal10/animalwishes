@@ -153,7 +153,7 @@ class AnimalsController < ApplicationController
 
 	   # Send an email to the sanctuary about the donation
 	   AnimalwishesMailer.sanctuary_donation_email('slowreader@gmail.com',							    #@payment_details_response.senderEmail 
-							  @animal.name, 
+							  @animal.name, @animal.species,
 							  donation.amount.to_s(),
 							  #@animal.organization.contactEmail
 							  'shalabh94086@gmail.com').deliver_later

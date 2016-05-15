@@ -5,20 +5,22 @@
   </head>
   <body>
     <h1><%= @name %> has sent you a contact request form!</h1>
-    <p>
-    Please reply back at <%= @email_address %>
+    <p><br>
+    Please respond back to the supplied email address: <%= @email_address %>
     </p>
     <br>
     <br>
     <p>
-      Message:: 
+    Here is the message that was submitted:<br>
+    ======================================================================<br>
     </p>
     <p>
       <%= @message %>
     </p>
     <br>
     <br>
-     =====================================================
-  <%= link_to 'Animal Wishes', "http://www.animalwishes.org" %>
+    ======================================================================<br><br>
+    Sent From: <br><%= link_to 'Animal Wishes', "http://www.animalwishes.org" %>
+    <br><br>
   </body>
 </html>

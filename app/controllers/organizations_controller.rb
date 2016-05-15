@@ -53,8 +53,6 @@ class OrganizationsController < ApplicationController
   end
 
   def contact	
-	@captcha_error = nil
-	logger.info(params[:name])
 	if (verify_recaptcha == false)
 	    @captcha_error = "You failed to verify that you're not a robot - please check the Captcha field in the form below and resubmit"
 	    render 'about' and return

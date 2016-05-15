@@ -1,10 +1,26 @@
-<%= @name %> has sent you a contact request form!</h1>
-
-
-Please reply back at <%= @email_address %>
-
-      Message::
- 
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1><%= @name %> has sent you a contact request form!</h1>
+    <p><br>
+    Please respond back to the supplied email address: <%= @email_address %>
+    </p>
+    <br>
+    <br>
+    <p>
+    Here is the message that was submitted:<br>
+    ======================================================================<br>
+    </p>
+    <p>
       <%= @message %>
-     =====================================================
-  <%= link_to 'Animal Wishes', "http://www.animalwishes.org" %>
+    </p>
+    <br>
+    <br>
+    ======================================================================<br><br>
+    Sent From: <br><%= link_to 'Animal Wishes', "http://www.animalwishes.org" %>
+    <br><br>
+  </body>
+</html>

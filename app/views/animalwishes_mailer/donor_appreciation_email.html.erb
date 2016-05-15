@@ -4,19 +4,20 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <h1>On behalf of the Animals, we thank you!</h1>
+    <br><br>
+    <h1>On behalf of the Animals, we thank you!</h1><br>
     <p>
       We appreciate your donation of $<%= @amount %> to <%= @name %>.
       <br>
       <br>
-      An email has also been sent to <%= @sanctuary_name %>.
+      An email notification has been sent to <%= @sanctuary_name %>.
       <br>
-      Feel free to contact them at <%= @sanctuary_email %>.
+      Their contact email address is <%= @sanctuary_email %>.
     </p>
-    <p>
-    <p>Thanks for your support and have a great day!</p>
+    <br>
+    <p>Thank you for your support and have a great day!</p>
     <br>
     <br>
-  <%= link_to 'Animal Wishes', "http://www.animalwishes.org" %>
+   Sent From: <%= link_to 'Animal Wishes', "http://www.animalwishes.org" %>
   </body>
 </html>

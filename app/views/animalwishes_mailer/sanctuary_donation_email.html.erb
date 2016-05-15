@@ -4,19 +4,22 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <h1><%= @name %> has received a new donation!</h1>
+    <h1><%= @name %> the <%= @species %> has received a new donation!</h1>
     <p>
+    <br>
       Animalwishes.org received a donation of $<%= @amount %> for <%= @name %>.
       <br>
-      The paypal donor email was <%= @donor_email %>
       <br>
       <br>
-      Please send them a note of appreciation if possible.
+      The donor's contact email address is <%= @donor_email %>.<br>
+      Feel free to contact them. <br>
+      Your email contact information has been sent to them.<br>
     </p>
-    <p>
+    <br>
     <p>Have a great day!</p>
     <br>
     <br>
-  <%= link_to 'Animal Wishes', "http://www.animalwishes.org" %>
+    Sent From:<%= link_to 'Animal Wishes', "http://www.animalwishes.org" %>
+    <br><br>
   </body>
 </html>
