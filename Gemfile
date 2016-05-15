@@ -62,3 +62,4 @@ gem 'seed_dump'
 gem 'sidekiq'
 
 gem "recaptcha", require: "recaptcha/rails"
+gem 'unicorn'

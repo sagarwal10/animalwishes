@@ -54,6 +54,10 @@ config.action_mailer.smtp_settings = {
     password:ENV['AWISHES_PASSWORD']
 }
 
+#config.logger = Logger.new(STDOUT)
+#  config.logger.level = Logger.const_get(
+#    ENV['LOG_LEVEL'] ? ENV['LOG_LEVEL'].upcase : 'DEBUG'
+#  )
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
 
