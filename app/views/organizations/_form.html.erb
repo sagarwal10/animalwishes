@@ -16,6 +16,14 @@
     <%= f.text_field :name, class:"form-control" %>
   </div>
   <div class="form-group field">
+    <%= f.label "Paypal Email" %><br>
+    <%= f.email_field :paypalEmail, class:"form-control" %>
+  </div>
+  <div class="form-group field">
+    <%= f.label "Contact Email (if different than Paypal)" %><br>
+    <%= f.email_field :contactEmail, class:"form-control" %>
+  </div>
+  <div class="form-group field">
     <%= f.label :about %><br>
     <%= f.text_area :about, class:"form-control" %>
   </div>

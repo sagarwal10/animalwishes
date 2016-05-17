@@ -1,6 +1,6 @@
 class OrganizationsController < ApplicationController
   before_action :set_organization, only: [:show, :edit, :update, :destroy]
-  before_action :check_superuser_privelege, only: [:new, :edit] 
+  before_action :check_superuser_privelege, only: [:new, :edit, :destroy] 
 
   # GET /organizations
   # GET /organizations.json
@@ -58,15 +58,16 @@ class OrganizationsController < ApplicationController
 	    render 'about' and return
 	end
 
-        AnimalwishesMailer.contact_form_email(params[:email],
-					      params[:name],
-					      params[:message]).deliver_later
+        AnimalwishesMailer.contact_form_email(
+		ERB::Util.html_escape(params[:email]),
+	        ERB::Util.html_escape(params[:name]),
+		ERB::Util.html_escape(params[:message])).deliver_later
   end
 
   # DELETE /organizations/1
   # DELETE /organizations/1.json
   def destroy
-    @organization.destroy
+    # @organization.destroy
     respond_to do |format|
       format.html { redirect_to organizations_url, notice: 'Organization was successfully destroyed.' }
       format.json { head :no_content }
@@ -76,12 +77,13 @@ class OrganizationsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_organization
+      @signed_in = admin_signed_in?
       @organization = Organization.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def organization_params
-      params.require(:organization).permit(:name, :about, :url, :logo)
+      params.require(:organization).permit(:name, :about, :url, :logo, :paypalEmail, :contactEmail)
     end
 
     def check_superuser_privelege

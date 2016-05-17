@@ -200,7 +200,7 @@ class AnimalsController < ApplicationController
 
     def check_logged_in
         unless admin_signed_in?
-           flash[:error] = "You need to be logged in to add an animal"
+           flash[:error] = "You need to be logged in to add or edit an animal"
 	   redirect_to new_admin_session_path
 	end
     end
