@@ -47,6 +47,7 @@
 <%= form_tag(purchase_url(@animal.id), method: "post",class:"pull-right", id:"donateForm") do %>
 <%= number_field(nil, :amount, class:"donateField controls", 
 		 in: 1..(@animal.amount - @animal.amountRaised), 
+	 	 step: 0.5,
 		 placeholder:"Enter donation amount") %>
 <button type="submit" class="donateForm btn btn-primary ">Donate 
 </button>

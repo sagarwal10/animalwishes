@@ -8,6 +8,8 @@ class AnimalsController < ApplicationController
     if (params[:species] == nil) 
         @animals = Animal.all
     else
+	# use whereby since find_by_species only returns 1 record
+	# also use the array version to prevent sql injection
         @animals = Animal.where("species = ?", params[:species])
     end
     @species = Animal.select("species").distinct
@@ -103,11 +105,11 @@ class AnimalsController < ApplicationController
 
 	# Access response
 	if @response.success? && @response.payment_exec_status != "ERROR"
-  		logger.info(@response.payKey)
+  		# logger.info(@response.payKey)
 		session[:paypalPaykey] = @response.payKey
   		redirect_to @api.payment_url(@response)  # Url to complete payment
 	else
-		logger.info("Fail")
+		# logger.info("Fail")
   		@response.error[0].message
 	end
   end 
@@ -122,8 +124,11 @@ class AnimalsController < ApplicationController
 
      # Make API call & get response
      @payment_details_response = @api.payment_details(@payment_details)
-     logger.info(@payment_details_response.status)
+     # logger.info(@payment_details_response.status)
      if (@payment_details_response.status == "COMPLETED")
+	# if the user hits the "return to vendor page" button on paypal
+	# multiple times, then this payment_succeeded gets called multiple times.
+	# so we check to see if the donation has already been processed.
 	donation_record = 
                @animal.donation_records.find_by(:paypalKey => session[:paypalPaykey])
 	if (donation_record == nil)
@@ -155,9 +160,10 @@ class AnimalsController < ApplicationController
 							  'shalabh94086@gmail.com').deliver_later
         else
 	   @donation_amount = donation_record.amount
-            logger.info("****** RECORD EXISTs ********")
+           # logger.info("****** RECORD EXISTs ********")
         end
      else 
+	session.delete(:paypalPaykey)
 	redirect_to purchase_failed_url(@animal)
      end
   end
@@ -165,7 +171,6 @@ class AnimalsController < ApplicationController
   def purchase_failed
       # @amount = session[:animal_donation_amount]
       set_organization
-      session.delete(:paypalPaykey)
       @donation_message = "Your donation payment was either cancelled or unsuccessful."
       render "show"
   end 

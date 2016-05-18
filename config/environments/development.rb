@@ -41,18 +41,22 @@ Rails.application.configure do
   # Raises helpful error messages.
   config.assets.raise_runtime_errors = true
 
-config.action_mailer.raise_delivery_errors = true
-config.action_mailer.default_url_options = { :host => 'localhost:3000' }
-config.action_mailer.delivery_method = :smtp
-config.action_mailer.smtp_settings = {
-    address: "smtp.gmail.com",
-    port:"587",
-    domain:"gmail.com",
-    authentication: "plain",
-    enable_starttls_auto:true,
-    user_name:ENV['AWISHES_EMAIL'],
-    password:ENV['AWISHES_PASSWORD']
-}
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+     address: "smtp.gmail.com",
+     port:"587",
+     domain:"gmail.com",
+     authentication: "plain",
+     enable_starttls_auto:true,
+     user_name:ENV['AWISHES_EMAIL'],
+     password:ENV['AWISHES_PASSWORD']
+  }
+
+#  config.to_prepare { Devise::SessionsController.force_ssl }
+#  config.to_prepare { Devise::RegistrationsController.force_ssl }
+#  config.to_prepare { Devise::PasswordsController.force_ssl }
 
 #config.logger = Logger.new(STDOUT)
 #  config.logger.level = Logger.const_get(

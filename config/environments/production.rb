@@ -76,9 +76,9 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
-config.action_mailer.default_url_options = { :host => 'animalwishes.herokuapp.com' }
-config.action_mailer.delivery_method = :smtp
-config.action_mailer.smtp_settings = {
+  config.action_mailer.default_url_options = { :host => 'animalwishes.herokuapp.com' }
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
     address: "smtp.gmail.com",
     port:"587",
     domain:"gmail.com",
@@ -86,14 +86,18 @@ config.action_mailer.smtp_settings = {
     enable_starttls_auto:true,
     user_name:ENV['AWISHES_EMAIL'],
     password:ENV['AWISHES_PASSWORD']
-}
+  }
 
- config.paperclip_defaults = {
-  :storage => :s3,
-  :s3_credentials => {
+  config.paperclip_defaults = {
+    :storage => :s3,
+    :s3_credentials => {
     :bucket => ENV['S3_BUCKET_NAME'],
     :access_key_id => ENV['AWS_ACCESS_KEY_ID'],
     :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']
   }
+
+#  config.to_prepare { Devise::SessionsController.force_ssl }
+#  config.to_prepare { Devise::RegistrationsController.force_ssl }
+#  config.to_prepare { Devise::PasswordsController.force_ssl }
  }
 end
