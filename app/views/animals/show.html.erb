@@ -44,16 +44,12 @@
   </div>
 </div>
 
-<%= form_tag(purchase_url(@animal.id), method: "get",class:"pull-right", id:"donateForm") do %>
-<%= text_field_tag 'amount', nil, class:"donateField controls", 
-    placeholder:"Enter donation amount", data: {
-    :validation => "required number",
-    "validation-error-msg" => "Please enter a valid amount."
-    } %>
+<%= form_tag(purchase_url(@animal.id), method: "post",class:"pull-right", id:"donateForm") do %>
+<%= number_field(nil, :amount, class:"donateField controls", 
+		 in: 1..(@animal.amount - @animal.amountRaised), 
+		 placeholder:"Enter donation amount") %>
 <button type="submit" class="donateForm btn btn-primary ">Donate 
 </button>
-<br>
-<p id="donateFormError" class="bg-danger"></p>
 <% end %>
 <br>
 <br><br><br>

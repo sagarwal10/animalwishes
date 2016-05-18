@@ -1,19 +1,16 @@
 class AnimalsController < ApplicationController
   before_action :set_animal, only: [:show, :purchase, :purchase_succeeded, :purchase_failed, :edit, :update, :destroy]
-  before_action :check_logged_in, only: [:new, :edit]
+  before_action :check_logged_in, only: [:new, :edit, :destroy]
 
   # GET /animals
   # GET /animals.json
   def index
-    @filter_param = params[:species];
     if (params[:species] == nil) 
         @animals = Animal.all
     else
         @animals = Animal.where("species = ?", params[:species])
     end
     @species = Animal.select("species").distinct
-    @carousel_caption = "<h3>Discover the stories and unique personalities of rescued Animals and Support them</h3>
-        <p>100% of your donation goes to the Animals and their Sanctuaries</p>"
   end
 
   # GET /animals/1
@@ -34,7 +31,6 @@ class AnimalsController < ApplicationController
 
   # GET /animals/1/edit
   def edit
-    
     if current_admin.superUser == false &&
        @animal.organization_id != nil && 
        @animal.organization_id != current_admin.organization_id
