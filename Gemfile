@@ -28,7 +28,8 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 # gem 'sdoc', '~> 0.4.0', group: :doc
-gem 'paperclip', github: 'thoughtbot/paperclip'
+gem 'paperclip', :git=> 'https://github.com/thoughtbot/paperclip', :ref => '523bd46c768226893f23889079a7aa9c73b57d68'
+# gem 'paperclip', github: 'thoughtbot/paperclip'
 gem 'aws-sdk', '<2.0'
 gem 'rails_12factor'
 
