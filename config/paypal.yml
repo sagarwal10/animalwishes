@@ -1,15 +1,22 @@
-test: &default
+t: &default
 
   # Credentials for REST APIs
 
   # Mode can be 'live' or 'sandbox'
-  mode: sandbox
+  mode: <%= ENV['PAYPAL_MODE'] %>
 
+  <% if ENV['PAYPAL_MODE'] == 'sandbox' %>
   # Credentials for Classic APIs
-  app_id: <%= ENV['PAYPAL_APPID'] %>
-  username: <%= ENV['PAYPAL_USERNAME'] %>
-  password: <%= ENV['PAYPAL_PASSWORD'] %>
-  signature: <%= ENV['PAYPAL_SIGNATURE'] %>
+  app_id: <%= ENV['PAYPAL_SANDBOX_APPID'] %>
+  username: <%= ENV['PAYPAL_SANDBOX_USERNAME'] %>
+  password: <%= ENV['PAYPAL_SANDBOX_PASSWORD'] %>
+  signature: <%= ENV['PAYPAL_SANDBOX_SIGNATURE'] %>
+  <% else %>
+  app_id: <%= ENV['PAYPAL_LIVE_APPID'] %>
+  username: <%= ENV['PAYPAL_LIVE_USERNAME'] %>
+  password: <%= ENV['PAYPAL_LIVE_PASSWORD'] %>
+  signature: <%= ENV['PAYPAL_LIVE_SIGNATURE'] %>
+  <% end %>
 
 
   # # With Certificate
@@ -28,4 +35,4 @@ development:
 
 production:
   <<: *default
-  mode: sandbox
+  mode: <%= ENV['PAYPAL_MODE'] %>
