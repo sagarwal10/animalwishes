@@ -55,6 +55,9 @@ class OrganizationsController < ApplicationController
   def contact	
 	if (verify_recaptcha == false)
 	    @captcha_error = "You failed to verify that you're not a robot - please check the Captcha field in the form below and resubmit"
+	    @email_content = params[:email]
+	    @name_content = params[:name]
+	    @message_content = params[:message]
 	    render 'about' and return
 	end
 

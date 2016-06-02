@@ -27,5 +27,6 @@ module Animalwishes
     config.active_job.queue_adapter = :sidekiq
 
     config.filter_parameters << :password
+    config.filter_parameters << :email
   end
 end

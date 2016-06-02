@@ -53,17 +53,17 @@ and donate to Animals in need. I also hope you go visit them.
 <%= form_tag(contact_url) do %>
   <div class="form-group">
     <label>Name</label>
-    <%= text_field_tag 'name', nil, class:"form-control",
+    <%= text_field_tag 'name', @name_content, class:"form-control",
     placeholder:"Enter Your name"  %>
   </div>
   <div class="form-group">
     <label for="exampleInputEmail1">Email address</label>
-    <%= email_field_tag 'email', nil, class:"form-control",
+    <%= email_field_tag 'email', @email_content, class:"form-control",
     placeholder:'Enter your email address', :required => true %>
   </div>
   <div class="form-group">
     <label>Message</label>
-    <%= text_area_tag 'message', nil, rows:4, class:"form-control",
+    <%= text_area_tag 'message', @message_content, rows:4, class:"form-control",
         placeholder: "Enter your message", :required => true %>
   </div>
   <%= recaptcha_tags :ssl => true %>

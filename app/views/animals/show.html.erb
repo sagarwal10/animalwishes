@@ -9,7 +9,8 @@
    <% end %>
     <li role="presentation" class="sidebar-brand"><a href="#profile" aria-controls="profile" role="tab" data-toggle="profile"><%= "About #{@animal.name}" %></a></li>
     <li role="presentation" class="sidebar-brand"><a href="#donate" aria-controls="messages" role="tab" data-toggle="donate">Donate</a></li>
-    <li role="presentation" class="sidebar-brand"><a href="#organization" aria-controls="settings" role="tab" data-toggle="organization"><%= "#{@animal.name}'s Home" %></a></li>
+    <li role="presentation" class="sidebar-brand"><a href="#organization" aria-controls="settings" role="tab" data-toggle="organization"><%= "About #{@animal.name}'s Home" %></a></li>
+    <li role="presentation" class="sidebar-brand"><%= link_to 'Back to the Animals', root_url %></li>
   </ul>
 </div>
 
@@ -54,6 +55,7 @@
 <% end %>
 <br>
 <br><br><br>
+<a name="organization"></a>
 <h2 class="text-al-center" ><u><%= "#{@animal.name}'s Home" %></u></h2>
 <br>
 <%= render 'organizations/show' %>

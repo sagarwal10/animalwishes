@@ -1,61 +1,9 @@
-Tiles stores
-----------------
-All Natural Stone, Bedrosians, & Porcelanosa, Artistic Stones, Bullnose Tiles
+https://medium.com/@petehouston/install-and-config-redis-on-mac-os-x-via-homebrew-eb8df9a4f298#.h8d7ccs95
 
-Houzz/Pinterest
+redis-server /usr/local/etc/redis.conf  &
+bundle exec sidekiq -c 5 -q default -q mailers -v 
 
-RICCO style
-----------------
-Say about 4-5 hours of work. Will send you a list of stuff to buy 
-after surveying place. Rate is about $200 an hour. 
+https://devcenter.heroku.com/articles/heroku-postgres-import-export
 
-Can also create a mood board. 
+pg_restore your_db_dump.file
 
--tiling: layout of tile, shape. design, etc will definitely be discussed on site and noted in the notes sections of the Plan.
--shower door installation: we give ideas as to what type of door to get - but installation/ordering we leave to the contractor/whoever is going to do the installing for you. We are not apart of the installation process.
-
-The first time we meet would be for the Design Planning Session which starts at a minimum of 1 hour on site. I don't image we need much more than 1.5 hours for the Design Planning Session if we are only focusing on the bathroom. Of course that is al just a current estimate of time.
-
-Recommends visiting: 
-All Natural Stone, Bedrosians, & Porcelanosa, Houzz, Pinterest
-
-Debra Kay
---------------
-$220 an hour. Full shopping or consulting. 
-
-Design Studio.co
-------------------------
-$150 an hour. Has a builder. Will come up with a plan and then can purchase
-for you or you can go purchase on your own. Sounded quite busy.
-
-Envision Interior
------------------------
-Sounded very nice. $150 an hour. 2-4 hours. Will drive to San Carlos for fixtures.
-Likes a place called All Natural Stones. 
-
-Magnolia - Kathleen Gretz
-------------------------------------
-Also very nice. $120 an hour. Suggested it might take 4-5 hours if things go well
-otherwise upto 8 hours. Suggested not to go to home depot but has sent a list
-of stores to go to. 
-
-Recommends visiting: 
-Bullnose Tile  http://bullnosetilesj.com/
-Bedrosians  http://www.bedrosians.com/ (click through to find location in San Jose)
-Porcelanosa http://www.porcelanosa-usa.com/ (click through to find location in San Jose)
-
-
-Pamela Urbanism design
----------------------------------
-Very nice. Can consult for as much or as little as needed. Will let me know if its 
-getting close to 5 hours. Can go shopping or willing to let do that. $125 an hour.
-Will take more time if need 2D or 3D drawing. Doesn't require that you go through
-entire process with her. Shares 50% of trade discount with client. Will do a productive
-meet & greet. 
-
-For tight budgets she has had clients go bring back samples from stores and she can 
-tell if its good or bad. 
-
-Estimates that bathroom remodel (without 2D or 3D design) will be about 5 hours.
-
-Recommends visiting Natural Stone, Perosians, Artistic Stone
