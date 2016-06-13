@@ -45,7 +45,7 @@
   </div>
 </div>
 
-<%= form_tag(purchase_url(@animal.id, :protocol => 'https'), method: "post",class:"pull-right", id:"donateForm") do %>
+<%= form_tag(purchase_url(@animal.id), method: "post",class:"pull-right", id:"donateForm") do %>
 <%= number_field(nil, :amount, class:"donateField controls", 
 		 in: 1..(@animal.amount - @animal.amountRaised), 
 	 	 step: 0.5,
