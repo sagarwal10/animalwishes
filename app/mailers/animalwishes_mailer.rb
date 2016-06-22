@@ -16,7 +16,11 @@ class AnimalwishesMailer < ApplicationMailer
         @species=species
 	@amount=amount
 	@donor_email=donor_email
-        mail(to: sanctuary_email, cc: ENV['AWISHES_EMAIL'], subject: 'You have received a new donation')
+	if (ENV['PAYPAL_MODE'] == 'sandbox')
+            mail(to: ENV['TEST_EMAIL'],  subject: 'Test: You have received a new donation')
+        else   
+            mail(to: sanctuary_email, cc: ENV['AWISHES_EMAIL'], subject: 'You have received a new donation')
+	end
     end
 
     def contact_form_email(email_address, name, message)
