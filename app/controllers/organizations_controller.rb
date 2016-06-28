@@ -61,10 +61,10 @@ class OrganizationsController < ApplicationController
 	    render 'about' and return
 	end
 
-        AnimalwishesMailer.contact_form_email(
+        ContactMailerJob.perform_async(
 		ERB::Util.html_escape(params[:email]),
 	        ERB::Util.html_escape(params[:name]),
-		ERB::Util.html_escape(params[:message])).deliver_later
+		ERB::Util.html_escape(params[:message]))
   end
 
   # DELETE /organizations/1

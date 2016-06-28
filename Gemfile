@@ -62,7 +62,8 @@ gem 'paypal-sdk-adaptivepayments'
 
 gem 'seed_dump'
 
-gem 'sidekiq'
+# gem 'sidekiq'
+gem 'sucker_punch' 
 
 gem "recaptcha", require: "recaptcha/rails"
 gem 'unicorn'
