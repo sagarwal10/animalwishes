@@ -34,6 +34,7 @@
           </ul>
         </li> -->
         <li><%= link_to "Home", root_path %></li>
+	<li id="donateButton"><%= link_to "Donate", root_path(anchor: "donation_section") %></li>
 	<li><%= link_to "How This Works", faq_path %></li>
         <li><%= link_to "About", about_path %></li>
         <% if admin_signed_in? %>

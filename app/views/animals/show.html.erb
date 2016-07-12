@@ -34,24 +34,38 @@
 <a name="profile"></a>  
 <div id="animaldescription" class=""><%= @animal.fullDescription %></div>
 
-
+<br>
 <a name="donate"></a>
 <h2 class="text-al-center"><u>Donate</u></h2>
-        <div id="animalneed" class="p1"><h3><i><%= @animal.summary %></i><h3></div>
-<div class="text-right">Total requested: $<%= @animal.amount %>. Still needed: <b>$<%= @animal.amount - @animal.amountRaised %></b></div>
+<div id="animalneed" >
+<h3>
+<br>
+<% if @animal.monthly_sponsorship %>
+    <i><%= "Contribute to #{@animal.name}'s monthly food & living" %></i>
+    <br>
+    <div id="animalamountmessage"><%= "(Note: This is a one time only contribution)" %></div>
+<% else %>
+    <i><%= @animal.summary %></i>
+<% end %>
+</h3>
+</div>
+<br>
+<div class="text-right" >Total requested: $<%= @animal.amount %>. Still needed: <b>$<%= @animal.amount - @animal.amountRaised %></b></div>
 <div class="progress">
   <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width:<%= @animal.amountRaised*100/@animal.amount %>%;" >
     <%= (@animal.amountRaised*100/@animal.amount).floor %>%
   </div>
 </div>
-
+<br>
 <%= form_tag(purchase_url(@animal.id), method: "post",class:"pull-right", id:"donateForm") do %>
 <%= number_field(nil, :amount, class:"donateField controls", 
 		 in: 1..(@animal.amount - @animal.amountRaised), 
 	 	 step: 0.5,
-		 placeholder:"Enter donation amount") %>
+		 placeholder:"Enter a donation amount from $0.50 to " +
+			     "$#{@animal.amount-@animal.amountRaised}") %>
 <button type="submit" class="donateForm btn btn-primary ">Donate 
 </button>
+<div id="animalamountmessage" class="text-right">(any contribution amount upto the total needed is appreciated)</div>
 <% end %>
 <br>
 <br><br><br>

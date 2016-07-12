@@ -30,4 +30,14 @@ $(document).ready(function() {
 	    // $(this).prop("checked", false);
 	}    
     });
+
+    // Donate menu item takes you to instructions in the index page
+    $('#donateButton').click(function() {
+        $('html, body').animate({
+            scrollTop: $("#donation_section").offset().top
+        }, 2000, function () {
+         $("#donateInstructions").animate({zoom: 1.3, opacity: 0.25}, 1000);
+         $("#donateInstructions").animate({zoom: 1, opacity: 1}, 1000);
+	});
+    });
 });
