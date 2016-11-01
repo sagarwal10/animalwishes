@@ -82,14 +82,19 @@ h1 {
 
 #animalname {
   text-align:center;  
-  color:black;
+  color:white;
   font-size:1.3em;
 }
 #animalneed {
+  color:grey;
+  text-align:center;  
+  font-size:1em;
+}
+
+#animalneedshowpage {
   text-align:center;  
   font-size:1.1em;
 }
-
 #animaldescription {
   font-size:0.8em;
 }
