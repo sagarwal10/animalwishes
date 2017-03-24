@@ -96,32 +96,35 @@ chosen link or button. -->
 <% if @animal.monthly_sponsorship %>
     <i><%= "Contribute to #{@animal.name}'s monthly food & living" %></i>
     <br>
-    <div id="animalamountmessage"><%= "(Note: This is a one time only contribution)" %></div>
 <% else %>
     <i><%= @animal.summary %></i>
 <% end %>
 </h3>
 </div>
 <br>
-<div class="text-right" >Total requested: $<%= @animal.amount %>. Still needed: <b>$<%= @animal.amount - @animal.amountRaised %></b></div>
+<div class="text-right" >Total requested: $<%= number_with_precision(@animal.amount, precision: 2) %>. Still needed: <b>$<%= number_with_precision(@animal.amount - @animal.amountRaised, precision: 2) %></b></div>
 <div class="progress">
   <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width:<%= @animal.amountRaised*100/@animal.amount %>%;" >
     <%= (@animal.amountRaised*100/@animal.amount).floor %>%
   </div>
 </div>
-<br>
-<%= form_tag(purchase_url(@animal.id), method: "post",class:"pull-right", id:"donateForm") do %>
-<%= number_field(nil, :amount, class:"donateField controls", 
+<%= form_tag(purchase_url(@animal.id), method: "post", id:"donateForm") do %>
+<%= number_field(nil, :amount, class:"donateField", 
 		 in: 1..(@animal.amount - @animal.amountRaised), 
-	 	 step: 0.5,
+	 	 step: 0.01,
 		 placeholder:"Enter a donation amount from $0.50 to " +
-			     "$#{@animal.amount-@animal.amountRaised}") %>
-<button type="submit" onclick="goog_report_conversion(nil)"  class="donateForm btn btn-primary ">Donate 
+			     number_with_precision(@animal.amount-@animal.amountRaised, precision: 2) ) %>
+<button type="submit" onclick="goog_report_conversion(nil)"  class="pull-right donateButton btn btn-primary ">Donate
 </button>
-<div id="animalamountmessage" class="text-right">(any contribution amount upto the total needed is appreciated)</div>
+<div id="animalamountmessage" class="text-left">(any contribution amount upto the total needed is appreciated)</div>
+<div id="animalamountmessage"><%= "(Note: This is a one time only contribution)" %></div>
+<a class="pull-right"  href="https://www.paypal.com/webapps/mpp/paypal-popup" title="How PayPal Works" onclick="javascript:window.open('https://www.paypal.com/webapps/mpp/paypal-popup','WIPaypal','toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=yes, resizable=yes, width=1060, height=700'); return false;"><img style="width:80%" class="pull-right" src="https://www.paypalobjects.com/digitalassets/c/website/marketing/na/us/logo-center/9_bdg_secured_by_pp_2line.png" border="0" alt="Secured by PayPal"></a>
+
 <% end %>
 <br>
 <br><br><br>
+<br><br><br>
+
 <a name="organization"></a>
 <h2 class="text-al-center" ><u><%= "#{@animal.name}'s Home" %></u></h2>
 <br>

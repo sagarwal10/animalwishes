@@ -120,7 +120,7 @@ h1 {
 }
 
 #animalamountmessage {
-   font-size: 0.7em;
+   font-size: 0.9em;
 } 
 
 .main-text {
@@ -133,9 +133,13 @@ h1 {
 
 .donateField {
     height:2.6em;
-    margin:5px;
-    width:21em;
+    width:78%;
 }
+
+.donateButton {
+    width: 20%;
+}
+
 .carousel-caption {
 text-shadow: 2px 2px 18px rgba(255, 255, 255, 1);
 }
