@@ -67,3 +67,4 @@ gem 'sucker_punch'
 
 gem "recaptcha", require: "recaptcha/rails"
 gem 'unicorn'
+gem 'impressionist'

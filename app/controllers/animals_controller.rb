@@ -2,6 +2,8 @@ class AnimalsController < ApplicationController
   before_action :set_animal, only: [:show, :purchase, :purchase_succeeded, :purchase_failed, :edit, :update, :destroy]
   before_action :check_logged_in, only: [:new, :edit, :destroy]
 
+  impressionist 
+
   # GET /animals
   # GET /animals.json
   def index

@@ -2,6 +2,8 @@ class OrganizationsController < ApplicationController
   before_action :set_organization, only: [:show, :edit, :update, :destroy]
   before_action :check_superuser_privelege, only: [:new, :edit, :destroy] 
 
+  impressionist
+
   # GET /organizations
   # GET /organizations.json
   def index
